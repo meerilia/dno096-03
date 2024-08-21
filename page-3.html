@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>📝 Evaluación N°1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Añadir enlace a la fuente Space Mono desde Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap">
+</head>
+<body>
+    <header>
+        <p>
+            <a href="index.html">Hola</a>
+            <a href="page-1.html">Caleidoscopio</a>
+            <a href="page-2.html">Condiciones</a>
+            <a href="page-3.html" class="activo">Poema Aleatorio</a>
+            <a href="page-4.html">Orbit Control</a>
+            <a href="page-5.html">Melissa Cabrera</a>
+        </p>
+        <h1>Poema Aleatorio</h1>
+    </header>
+
+    <main></main>
+    
+    <aside>
+        <button onclick="foto()">🖼️ DESCARGA</button>
+    </aside>
+
+    <script>
+        let words = ['Si', 'me', 'vas', 'a', 'abandonar', 'piénsalo', 'bien', 'Si', 'me', 'vas', 'a', 'dejar', 'Si', 'me', 'vas', 'a', 'abandonar', 'piénsalo', 'bien', 'Si', 'me', 'vas', 'a', 'dejar', 'Yo', 'solo', 'espero', 'que', 'tú', 'no', 'te', 'vayas', 'a', 'equivocar', 'Y', 'si', 'no', 'me', 'quieres', 'más', 'piénsalo', 'bien', 'si', 'me', 'vas', 'a', 'dejar', 'Pues', 'muchas', 'veces', 'así', 'Por', 'un', 'error', 'se', 'pierde', 'un', 'amor', 'Y', 'pensar', 'que', 'tantas', 'veces', 'yo', 'decir', 'te', 'oí', 'Ay', 'yo', 'te', 'quiero', 'y', 'no', 'podría', 'vivir', 'Si', 'tú', 'te', 'vas', 'si', 'ya', 'no', 'estás', 'Y', 'si', 'tienes', 'ya', 'otro', 'amor', '(Tanto', 'mejor', 'para', 'nosotros', 'dos)', 'Solo', 'me', 'resta', 'decir', 'Adiós', 'Y', 'que', 'seas', 'muy', 'feliz', 'La-la-la-la-la', 'La-la-la-la-la-la', 'La-la-la-la-la', 'La-la-la-la-a', 'Y', 'pensar', 'que', 'tantas', 'veces', 'yo', 'decir', 'te', 'oí', 'Ay', 'yo', 'te', 'quiero', 'y', 'no', 'podría', 'vivir', 'Si', 'tú', 'te', 'vas', 'si', 'ya', 'no', 'estás', 'Y', 'si', 'tienes', 'ya', 'otro', 'amor', 'Tanto', 'mejor', 'para', 'nosotros', 'dos', 'Solo', 'me', 'resta', 'decir', 'Adiós', 'Y', 'que', 'seas', 'muy', 'feliz'];
+        let hue;
+        let navHeight = 120; // Ajusta este valor según el diseño de tu barra
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            angleMode(DEGREES);
+            background("#283593");
+
+            textFont('Space Mono'); 
+            textAlign(CENTER);
+            colorMode(HSB);
+
+            hue = random(180, 360);
+
+            for (let i = 0; i < 20; i++) {
+                textSize(random(16, 48));
+                fill(hue, 200, random(50, 95));
+                let x = random(width);
+                let y = random(navHeight + 20, height); // 20 píxeles de margen por debajo de la barra
+                text(random(words), x, y);
+            }
+        }
+
+        function draw() {
+            // Empty draw function for now
+        }
+
+        function foto() {
+            saveCanvas("poema-aleatorio.jpg");
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            background("#283593");
+        }
+    </script>
+</body>
+</html>

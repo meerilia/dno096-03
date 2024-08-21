@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>📝 Evaluación N°1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <p>
+            <a href="index.html">Hola</a>
+            <a href="page-1.html">Caleidoscopio</a>
+            <a href="page-2.html" class="activo">Condiciones</a>
+            <a href="page-3.html">Poema Aleatorio</a>
+            <a href="page-4.html">Orbit Control</a>
+            <a href="page-5.html">Melissa Cabrera</a>
+        </p>
+        <h1>Caleidoscopio</h1>
+    </header>
+
+    <main></main>
+    
+    <aside>
+        <button onclick="foto()">🖼️ DESCARGA</button>
+    </aside>
+
+    <script>
+        let symmetry = 6;
+        let angle = 360 / symmetry;
+
+        let circlePositionX = 200;
+        let circlePositionY = 200;
+        let circleSpeedX = 2;
+        let circleSpeedY = 3;
+        let circleRadius = 25;
+        let circleHue = 0;
+        let isMoving = true;
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            angleMode(DEGREES);
+            background("#283593");
+
+            ellipseMode(RADIUS);
+            noStroke();
+            colorMode(HSB);
+            strokeWeight(4);
+
+            describe(
+                'Un círculo comienza en el centro del lienzo, moviéndose automáticamente. Cuando el usuario mantiene presionado el mouse, el círculo deja de moverse, su interior cambia entre negro y blanco, y su contorno se desvanece entre colores, dejando un rastro arcoíris.'
+            );
+        }
+
+        function draw() {
+
+            stroke(circleHue, 80, 90);
+
+            if (circlePositionX >= 100 && circlePositionX <= width - 100) {
+                fill(0);
+            } else {
+                fill(255);
+            }
+
+            circle(circlePositionX, circlePositionY, circleRadius);
+
+            if (isMoving) {
+                circlePositionX += circleSpeedX;
+                circlePositionY += circleSpeedY;
+                circleHue = (circleHue + 1) % 360;
+
+                if (circlePositionX < circleRadius || circlePositionX > width - circleRadius) {
+                    circleSpeedX = -circleSpeedX;
+                }
+                if (circlePositionY < circleRadius || circlePositionY > height - circleRadius) {
+                    circleSpeedY = -circleSpeedY;
+                }
+            }
+        }
+
+        function mousePressed() {
+            // Alternar el movimiento del círculo cuando se presiona el mouse
+            isMoving = !isMoving;
+        }
+
+        function foto() {
+            saveCanvas("condiciones.jpg");
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            background("#283593");
+        }
+    </script>
+</body>
+</html>
+</html>

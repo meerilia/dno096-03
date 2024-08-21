@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>📝 Evaluación N°1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <p>
+            <a href="index.html">Hola</a>
+            <a href="page-1.html">Caleidoscopio</a>
+            <a href="page-2.html">Condiciones</a>
+            <a href="page-3.html">Poema Aleatorio</a>
+            <a href="page-4.html" class="activo">Orbit Control</a>
+            <a href="page-5.html">Melissa Cabrera</a>
+        </p>
+        <h1>Orbit Control</h1>
+    </header>
+
+    <main></main>
+    
+    <aside>
+        <button onclick="foto()">🖼️ DESCARGA</button>
+    </aside>
+
+    <script>
+        function setup() {
+            createCanvas(windowWidth, windowHeight, WEBGL); // Configuración para el lienzo WEBGL
+            angleMode(DEGREES);
+            strokeWeight(5);
+            noFill();
+            stroke("#FCE4EC"); // Color de trazo
+            background("#283593"); // Color de fondo inicial
+        }
+
+        function draw() {
+            background("#283593"); // Color de fondo en cada frame
+
+            // Ajuste de la cámara basado en mouse/touch
+            orbitControl();
+
+            // Crear un círculo de cubos para formar una esfera
+            for (let zAngle = 0; zAngle < 180; zAngle += 30) {
+                for (let xAngle = 0; xAngle < 360; xAngle += 30) {
+                    push();
+
+                    rotateZ(zAngle);
+                    rotateX(xAngle);
+
+                    translate(0, 400, 0); // Ajustar la posición de los cubos
+                    box(); // Crear un cubo
+                    pop();
+                }
+            }
+        }
+
+        function foto() {
+            saveCanvas("orbit-control.jpg"); // Guardar el lienzo como una imagen
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+            background("#283593"); // Ajustar el color de fondo en el redimensionamiento
+        }
+    </script>
+</body>
+</html>
